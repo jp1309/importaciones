@@ -3,6 +3,7 @@ __pycache__/
 .streamlit/cache/
 .env
 *.parquet
+!importaciones_ecuador.parquet
 *.zip
 *.xlsx
 *.csv
