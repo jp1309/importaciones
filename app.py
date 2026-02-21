@@ -84,6 +84,13 @@ Los datos provienen del **Banco Central del Ecuador (BCE)** y abarcan más de **
 con detalle mensual de valores CIF, volúmenes en toneladas métricas y clasificación arancelaria.
 """)
 
+st.info(
+    "¿Te interesa el otro lado de la balanza comercial? Explora también el "
+    "**[Dashboard de Exportaciones del Ecuador](https://jp1309-exportaciones.streamlit.app/)** — "
+    "productos FOB, precios implícitos y drilldown por subpartida.",
+    icon="🔗"
+)
+
 st.divider()
 
 # ── Módulos de visualización ──────────────────────────────────────────
@@ -140,8 +147,8 @@ cif_prev = dff[dff["Anio"] == max_anio - 1]["CIF"].sum()
 var_anio  = (cif_max - cif_prev) / cif_prev * 100 if cif_prev else 0
 
 k1, k2, k3, k4, k5 = st.columns(5)
-k1.metric("Total Importado (CIF)", f"${total_cif:,.0f} M")
-k2.metric("Peso Total", f"{total_tm:,.0f} TM")
+k1.metric("Total Importado (CIF)", f"${total_cif:,.1f} M")
+k2.metric("Volumen Total (TM)", f"{total_tm:,.0f}")
 k3.metric(f"CIF {max_anio} (millones USD)", f"${cif_max:,.0f} M",
           delta=f"{var_anio:+.1f}% vs {max_anio-1}")
 k4.metric("Países de Origen", f"{n_paises}")
@@ -278,10 +285,10 @@ with col_r2:
 st.divider()
 
 # ── Gráfico 6: Participación por subgrupo CUODE (100% stacked area) ───
-st.subheader("Participación por subgrupo CUODE")
+st.subheader("Participación por subgrupo CUODE (Top 10)")
 top_sub_list = (
     dff.groupby("Subgrupo")["CIF"].sum()
-    .sort_values(ascending=False).head(8).index.tolist()
+    .sort_values(ascending=False).head(10).index.tolist()
 )
 n_resto = dff["Subgrupo"].nunique() - len(top_sub_list)
 resto_label = f"RESTO ({n_resto} subgrupos)"
