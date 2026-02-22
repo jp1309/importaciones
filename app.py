@@ -190,7 +190,7 @@ fig1.update_layout(
 )
 fig1.update_xaxes(gridcolor="#f0f0f0")
 fig1.update_yaxes(gridcolor="#f0f0f0")
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig1, width="stretch")
 
 st.divider()
 
@@ -218,7 +218,7 @@ with col_left:
         margin=dict(l=220, t=10, b=30, r=20),
     )
     fig2.update_xaxes(gridcolor="#f0f0f0")
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
 # ── Gráfico 3: Top 10 países de origen ───────────────────────────────
 with col_right:
@@ -239,7 +239,7 @@ with col_right:
         margin=dict(l=200, t=10, b=30, r=20),
     )
     fig3.update_xaxes(gridcolor="#f0f0f0")
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, width="stretch")
 
 st.divider()
 
@@ -257,7 +257,7 @@ with col_l2:
     ))
     fig4.update_layout(height=380, margin=dict(t=20, b=20), showlegend=True,
                        legend=dict(orientation="v", font=dict(size=10)))
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, width="stretch")
 
 # ── Gráfico 5: Evolución regional (área apilada valores absolutos) ─────
 with col_r2:
@@ -280,7 +280,7 @@ with col_r2:
         legend=dict(orientation="h", y=-0.2, font=dict(size=10)),
     )
     fig5.update_xaxes(gridcolor="#f0f0f0")
-    st.plotly_chart(fig5, use_container_width=True)
+    st.plotly_chart(fig5, width="stretch")
 
 st.divider()
 
@@ -330,7 +330,7 @@ fig6.update_layout(
 )
 fig6.update_xaxes(gridcolor="#f0f0f0")
 fig6.update_yaxes(gridcolor="#f0f0f0")
-st.plotly_chart(fig6, use_container_width=True)
+st.plotly_chart(fig6, width="stretch")
 
 st.divider()
 
@@ -366,7 +366,7 @@ fig7.update_layout(
 )
 fig7.update_xaxes(gridcolor="#f0f0f0")
 fig7.update_yaxes(gridcolor="#f0f0f0")
-st.plotly_chart(fig7, use_container_width=True)
+st.plotly_chart(fig7, width="stretch")
 st.caption(
     "El conteo de países de origen incluye territorios, islas y zonas especiales además de países soberanos "
     "(254 entidades en total en el dataset). El BCE registra ~32 territorios/islas y zonas francas "

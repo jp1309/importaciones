@@ -162,4 +162,4 @@ fig1.update_layout(
 )
 fig1.update_xaxes(gridcolor=GRID_COLOR)
 fig1.update_yaxes(gridcolor=GRID_COLOR, tickformat=",.0f")
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig1, width="stretch")

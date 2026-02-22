@@ -125,7 +125,7 @@ fig1a.update_layout(
     margin=dict(l=380, t=10, b=30, r=20),
 )
 fig1a.update_xaxes(gridcolor=GRID_COLOR)
-st.plotly_chart(fig1a, use_container_width=True)
+st.plotly_chart(fig1a, width="stretch")
 
 st.divider()
 
@@ -150,7 +150,7 @@ fig2.update_layout(
 )
 fig2.update_xaxes(gridcolor=GRID_COLOR)
 fig2.update_yaxes(gridcolor=GRID_COLOR)
-st.plotly_chart(fig2, use_container_width=True)
+st.plotly_chart(fig2, width="stretch")
 
 st.divider()
 
@@ -200,7 +200,7 @@ with col_anual:
     )
     fig3a.update_xaxes(gridcolor=GRID_COLOR)
     fig3a.update_yaxes(gridcolor=GRID_COLOR)
-    st.plotly_chart(fig3a, use_container_width=True)
+    st.plotly_chart(fig3a, width="stretch")
 
 with col_paises:
     st.markdown("**Top 10 países de origen**")
@@ -219,5 +219,5 @@ with col_paises:
     )
     fig3b.update_xaxes(gridcolor=GRID_COLOR)
     fig3b.update_yaxes(gridcolor=GRID_COLOR)
-    st.plotly_chart(fig3b, use_container_width=True)
+    st.plotly_chart(fig3b, width="stretch")
 

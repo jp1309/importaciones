@@ -38,27 +38,19 @@ def limpiar_numero(s):
     except Exception:
         return None
 
-def detectar_unidad(path, fname):
-    """Detecta si los valores están en miles o millones de USD."""
-    with zipfile.ZipFile(path) as z:
-        with z.open(fname) as f:
-            header = f.read(2000).decode("latin-1", errors="replace").lower()
-    return "millones" if "millones" in header else "miles"
+# Años con archivo corregido por BCE (datos en miles USD, formato mensual)
+ANIOS_CON_F = {2007, 2008, 2009, 2010, 2018, 2019, 2020, 2021}
 
 
 def leer_zip(anio):
-    # 2007 tiene versión corregida con datos mensuales
-    fname = f"{anio}f.zip" if anio == 2007 else f"{anio}.zip"
+    fname = f"{anio}f.zip" if anio in ANIOS_CON_F else f"{anio}.zip"
     path = os.path.join(ZIP_DIR, fname)
-
-    # Detectar unidad del CSV
-    unidad = detectar_unidad(path, "Columnas.csv")
 
     with zipfile.ZipFile(path) as z:
         with z.open("Columnas.csv") as f:
             df = pd.read_csv(
                 f,
-                encoding="latin-1",
+                encoding="utf-8",
                 skiprows=6,
                 header=0,
                 sep=",",
@@ -99,12 +91,6 @@ def leer_zip(anio):
     # Convertir valores numéricos
     for col in ["TM", "FOB", "CIF"]:
         df[col] = df[col].apply(limpiar_numero)
-
-    # Normalizar a miles de USD: si el CSV venía en millones, multiplicar x1000
-    if unidad == "millones":
-        for col in ["FOB", "CIF"]:
-            df[col] = df[col] * 1000
-        print(f"[{anio}: millones*1000]", end=" ")
 
     # Filtrar filas vacías (sin código de grupo válido)
     df = df[df["Cod_Grupo"].str.match(r"^\d+$", na=False)]
