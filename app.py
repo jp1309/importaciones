@@ -80,9 +80,11 @@ con detalle mensual de valores CIF, volúmenes en toneladas métricas y clasific
 """)
 
 st.info(
-    "¿Te interesa el otro lado de la balanza comercial? Explora también el "
-    "**[Dashboard de Exportaciones del Ecuador](https://jp1309-exportaciones.streamlit.app/)** — "
-    "productos FOB, precios implícitos y drilldown por subpartida.",
+    "Explora también: "
+    "**[Exportaciones](https://jp1309-exportaciones.streamlit.app/)** — "
+    "productos FOB, precios implícitos y drilldown por subpartida · "
+    "**[Balanza Comercial por País](https://jp1309-balanza.streamlit.app/)** — "
+    "exportaciones vs importaciones con cada socio comercial.",
     icon="🔗"
 )
 
