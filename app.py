@@ -7,11 +7,10 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
-import threading
 from plotly.subplots import make_subplots
 
 from data_loader import (
-    load_data_aggregated, load_data, filtros_sidebar,
+    load_data_aggregated, filtros_sidebar,
     GRUPO_COLORS, SUBGRUPO_COLORS, _FALLBACK_COLORS, get_country_color, REGION_COLORS,
 )
 
@@ -58,10 +57,6 @@ st.markdown("""
 df = load_data_aggregated()
 dff, rango, grupos_sel, paises = filtros_sidebar(df, key_prefix="inicio")
 
-# ── Precalentar cache del Drilldown en segundo plano ─────────────────
-# load_data() (6.7M filas) se lanza en un thread para que al llegar
-# a la página Drilldown ya esté cacheado y cargue instantáneamente.
-threading.Thread(target=load_data, daemon=True).start()
 
 # ── Header ───────────────────────────────────────────────────────────
 st.title("Inicio")
